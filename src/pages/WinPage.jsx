@@ -16,7 +16,7 @@ const WinPage = () => {
           style={{ maxWidth: "250px" }}
         />
         <h1 className="fw-bold display-1 display-md-1 display-sm-2">WINNER!</h1>
-        <p className="fs-1 fw-bold ">Score: </p>{" "}
+        <p className="fs-1 fw-bold ">Score: </p>
         {/* TODO - need to read score from api */}
       </div>
 
