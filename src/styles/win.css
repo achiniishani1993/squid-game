@@ -1,13 +1,12 @@
-.eliminated {
-  background-color: #e40166;
+.win {
   min-height: 100vh;
   padding: 20px;
 }
-
 /* Responsive font scaling  */
 
-.eliminated h1 {
+.win h1 {
   font-size: clamp(48px, 10vw, 128px);
+  color: #E9B509;
 }
 
 .big-btn {
@@ -16,8 +15,18 @@
   height: 60px;
   font-size: 1.5rem;
   border-radius: 12px;
-  color: #e40166;
   letter-spacing: 5px;
+}
+
+.play-again-btn{
+    background-color: #E40166;
+    color: white;
+    border: none;
+}
+
+.leaderboard-btn{
+    background-color: #1E1E1E;
+    color: #E40166;
 }
 
 /* Media Qu: for responsive design- Manage only button here*/

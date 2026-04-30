@@ -11,10 +11,18 @@ const EliminatedPage = () => {
       </h1>
 
       <div className="d-flex flex-column flex-md-row gap-5 p-4 mt-4 w-100 justify-content-center align-items-center">
-        <Button variant="light" className="big-btn fw-bold" onClick={()=>navigate("/game")}>
+        <Button
+          variant="light"
+          className="big-btn fw-bold"
+          onClick={() => navigate("/game")}
+        >
           TRY AGAIN
         </Button>
-        <Button variant="dark" className="big-btn fw-bold" onClick={()=>navigate("/leaderboard")}>
+        <Button
+          variant="dark"
+          className="big-btn fw-bold"
+          onClick={() => navigate("/leaderboard")}
+        >
           LEADERBOARD
         </Button>
       </div>

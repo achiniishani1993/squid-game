@@ -4,7 +4,7 @@
 //   - handle navigation after game ends
 // - game logic + UI + imports GameControls
 
-import Game from "../components/Game/GameControls"
+import GameControls from "../components/Game/GameControls"
 
 
 const GamePage = () => {
