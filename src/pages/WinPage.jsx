@@ -9,7 +9,12 @@ const WinPage = () => {
   return (
     <div className="win d-flex flex-column justify-content-center align-items-center text-center">
       <div className="d-flex flex-column align-items-center justify-content-center gap-3 mt-3">
-        <img src={Logo} alt="Squid Game logo" />
+        <img
+          src={Logo}
+          alt="Squid Game logo"
+          className="img-fluid"
+          style={{ maxWidth: "250px" }}
+        />
         <h1 className="fw-bold display-1 display-md-1 display-sm-2">WINNER!</h1>
         <p className="fs-1 fw-bold ">Score: </p>{" "}
         {/* TODO - need to read score from api */}
