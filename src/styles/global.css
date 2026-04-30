@@ -1,0 +1,16 @@
+/* import google font */
+@import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: black;
+    color: white;
+    font-family: "Intel One Mono", monospace;
+}
