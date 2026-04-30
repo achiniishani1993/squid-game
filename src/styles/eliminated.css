@@ -1,0 +1,39 @@
+.eliminated {
+  background-color: #E40166;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Responsive font scaling  */
+
+.eliminated h1 {
+  font-size: clamp(48px, 10vw, 128px);
+}
+
+.big-btn {
+  width: 100%;
+  max-width: 470px;
+  height: 60px;
+  font-size: 1.5rem;
+  border-radius: 12px;
+  color: #E40166;
+  letter-spacing: 5px;
+}
+
+/* Media Qu: for responsive design- Manage only button here*/
+
+/* Tablet */
+@media (min-width: 768px) {
+  .big-btn {
+    height: 80px;
+    font-size: 1.75rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .big-btn {
+    height: 100px;
+    font-size: 2rem;
+  }
+}
