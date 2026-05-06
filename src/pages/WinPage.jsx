@@ -2,9 +2,41 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Logo from "../assets/images/logo-Gold.png";
 import "../styles/win.css";
+import winAudio from "../assets/audios/audio-win.mp3"; /* imported audio */
+import { useEffect, useRef } from "react";
 
 const WinPage = () => {
   const navigate = useNavigate();
+  const audioRef = useRef(null);
+
+  /*  Add and play audio - Audio Start */
+  useEffect(() => {
+    audioRef.current = new Audio(winAudio);
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.5;
+
+    audioRef.current.play().catch((err) => {
+      console.warn("Autoplay blocked:", err);
+    });
+    // clean audio
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = "";
+        audioRef.current = null;
+      }
+    };
+  }, []);
+  /*  Handle Navigation path and audio stop */
+  const handleNavigate = (path) => {
+    // Stop audio before navigating
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
+    navigate(path);
+  };
+  /*   - Audio End */
 
   return (
     <div className="win d-flex flex-column justify-content-center align-items-center text-center">
@@ -24,14 +56,14 @@ const WinPage = () => {
         <Button
           variant="light"
           className="big-btn fw-bold play-again-btn"
-          onClick={() => navigate("/game")}
+          onClick={() => handleNavigate("/game")}
         >
           PLAY AGAIN
         </Button>
         <Button
           variant="dark"
           className="big-btn fw-bold leaderboard-btn"
-          onClick={() => navigate("/leaderboard")}
+          onClick={() => handleNavigate("/leaderboard")}
         >
           LEADERBOARD
         </Button>
