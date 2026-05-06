@@ -23,11 +23,11 @@ const PlayerSelection = () => {
     { id: 149, name: "Kang Sae-byeok", img: img149 },
   ];
 
-  const handleSelect = () => {
+  const handleSelect = (player) => {
     setSelectedPlayer(player);
     // save to the local storage
     const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
-    localStorage.getItem(
+    localStorage.setItem(
       "currentUser",
       JSON.stringify({ ...currentUser, character: player }),
     );
