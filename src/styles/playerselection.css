@@ -1,0 +1,12 @@
+.leaderboard-btn {
+  background-color:#E40166;
+  color: black;
+  border-radius: 12px;
+  cursor: pointer;
+  letter-spacing: 10px;
+  margin-top: 10px;
+}
+
+.leaderboard-btn:hover {
+  background-color: #E40166;
+}
