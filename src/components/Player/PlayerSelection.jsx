@@ -12,9 +12,11 @@ import img246 from "../../assets/images/246.png";
 import img120 from "../../assets/images/120.png";
 import img149 from "../../assets/images/149.png";
 import "../../styles/playerSelection.css";
+import { useNavigate } from "react-router-dom";
 
 
 const PlayerSelection = () => {
+  const navigate = useNavigate();
   const [selectedPlayer, setSelectedPlayer] = useState(null);
 
   const PLAYERS = [
@@ -83,6 +85,7 @@ const PlayerSelection = () => {
           variant="dark"
           disabled={!selectedPlayer}
           className="px-4 py-2 fw-bold fs-4 playnow-btn"
+           onClick={() => navigate("/game")}
         >
           PLAY NOW
         </Button>
@@ -90,6 +93,7 @@ const PlayerSelection = () => {
         <Button
           variant="outline-secondary"
           className="px-4 py-2 fw-semibold leaderboard-btn"
+           onClick={() => navigate("/leaderboard")}
         >
           🏆 LEADERBOARD
         </Button>
