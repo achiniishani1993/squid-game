@@ -1,10 +1,8 @@
-//form UI + validation + page layout ALL HERE (API also)
+//form UI + validation + page layout ALL HERE 
 // Navigation 
       // - Login ---> Success --> PlayerSelection
       // - Register link ---> Create Account 
   
- // when login done Username need to save in context so can use anywhere
-     //Login --> Happened (success) ---> save user to context 
 
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";

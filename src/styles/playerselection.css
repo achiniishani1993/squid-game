@@ -1,0 +1,29 @@
+.leaderboard-btn {
+  background-color: #e40166;
+  color: black;
+  border-radius: 12px;
+  cursor: pointer;
+  letter-spacing: 8px;
+  margin-top: 10px;
+}
+
+.leaderboard-btn:hover {
+  background-color: #e40166;
+}
+
+.playnow-btn {
+  letter-spacing: 8px;
+}
+
+/* card css - PlayerCard component  */
+
+.card-text {
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.card-title {
+  background-color: #e40166;
+  width: 70px;
+}
