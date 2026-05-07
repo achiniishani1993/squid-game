@@ -1,6 +1,7 @@
 //Display all selected players
 // Renders the full grid of PlayerCards
-// Owns the "which card is selected" state
+//playerSelection UI
+
 import { useState } from "react";
 import PlayerCard from "./PlayerCard";
 import Button from "react-bootstrap/Button";
@@ -11,6 +12,7 @@ import img246 from "../../assets/images/246.png";
 import img120 from "../../assets/images/120.png";
 import img149 from "../../assets/images/149.png";
 import "../../styles/playerSelection.css";
+
 
 const PlayerSelection = () => {
   const [selectedPlayer, setSelectedPlayer] = useState(null);
@@ -25,8 +27,10 @@ const PlayerSelection = () => {
 
   const handleSelect = (player) => {
     setSelectedPlayer(player);
-    // save to the local storage
+    // Get data from localStorage
     const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
+
+    // save to the local storage
     localStorage.setItem(
       "currentUser",
       JSON.stringify({ ...currentUser, character: player }),
@@ -34,51 +38,66 @@ const PlayerSelection = () => {
   };
 
   return (
-    <div className="d-flex align-items-center justify-content-center py-4">
-      <div
-        className="bg-white text-dark rounded-4 shadow-lg w-100 mx-2 p-2 d-flex flex-column"
-        style={{ maxWidth: "1200px", minHeight: "100vh" }}
-      >
-        <div className="justify-content-center text-center align-items-center">
-          <img
-            src={Logo}
-            alt="Squid Game logo"
-            className="img-fluid mb-3 "
-            style={{ maxWidth: "250px" }}
-          />
+   <div className="container-fluid min-vh-100 d-flex align-items-center justify-content-center py-4">
+  <div className="card shadow-lg border-0 w-100" style={{ maxWidth: "1200px" }}>
+    
+    <div className="card-body d-flex flex-column p-4 p-md-5">
 
-          <p className="mb-2 fs-4">
-            "You bet on horses? It's the same here, but we bet on humans. You're
-            our horses."
-          </p>
+     
+      <div className="text-center mb-4">
+        <img
+          src={Logo}
+          alt="Squid Game logo"
+          className="img-fluid mb-3"
+          style={{ maxWidth: "220px" }}
+        />
 
-          <h2 className="fw-bold mb-2">Select your player</h2>
-          {/* need to getItem from localStorage- username */}
-          <p>
-            Welcome,,
-            <span style={{ color: "#E40166", fontWeight: "600" }}>
-              username
-            </span>
-          </p>
-        </div>
-        <div className="d-flex flex-wrap justify-content-center gap-3 mt-4">
-          {PLAYERS.map((player) => (
+        <p className="fs-5 mb-2">
+          "You bet on horses? It's the same here, but we bet on humans. You're our horses."
+        </p>
+
+        <h2 className="fw-bold">Select your player</h2>
+
+        <p className="mb-0">
+          Welcome,   {/* TODO- need to add username from the localStorage */}
+          <span className="fw-semibold text-danger">username</span>
+        </p>
+      </div>
+
+   
+      <div className="row g-3 justify-content-center">
+        {PLAYERS.map((player) => (
+          <div key={player.id} className="col-6 col-sm-4 col-md-3 col-lg-2">
             <PlayerCard
-              key={player.id}
               player={player}
               isSelected={selectedPlayer?.id === player.id}
               onSelect={handleSelect}
             />
-          ))}
-        </div>
-
-        <div className="d-flex flex-column justify-content-center align-items-center gap-3 mt-5">
-          <Button variant="dark" disabled={!selectedPlayer}  className="btn px-4 py-3 fw-bold fs-1 ">PLAY NOW</Button>
-
-          <Button variant="light"  className="btn leaderboard-btn px-4 py-3 fw-bold fs-6">🏆 LEADERBOARD</Button>
-        </div>
+          </div>
+        ))}
       </div>
+
+
+      <div className="d-flex flex-column align-items-center gap-3 mt-4">
+        <Button
+          variant="dark"
+          disabled={!selectedPlayer}
+          className="px-4 py-2 fw-bold fs-4 playnow-btn"
+        >
+          PLAY NOW
+        </Button>
+
+        <Button
+          variant="outline-secondary"
+          className="px-4 py-2 fw-semibold leaderboard-btn"
+        >
+          🏆 LEADERBOARD
+        </Button>
+      </div>
+
     </div>
+  </div>
+</div>
   );
 };
 

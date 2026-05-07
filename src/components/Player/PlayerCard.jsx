@@ -16,7 +16,7 @@ const PlayerCard = ({ player, isSelected, onSelect }) => {
           width: "160px",
           height: "220px", 
           cursor: "pointer",
-          border: isSelected ? "2px solid hotpink" : "1px solid #E40166",
+          border: isSelected ? "3px solid hotpink" : "1px solid #E40166",
         }}
       >
         <div className="d-flex justify-content-center mt-3">

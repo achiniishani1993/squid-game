@@ -1,5 +1,5 @@
 
-// read selectedplayer info & username from GameContext.jsx
+// read selectedplayer info & username from localStorage
 //   - save score to storage when game ends
 //   - handle navigation after game ends
 // - game logic + UI + imports GameControls
