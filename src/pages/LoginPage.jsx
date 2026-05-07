@@ -3,49 +3,47 @@
       // - Login ---> Success --> PlayerSelection
       // - Register link ---> Create Account 
   
+ // when login done Username need to save in context so can use anywhere
+     //Login --> Happened (success) ---> save user to context 
 
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import Logo from "../assets/images/logo-Pink.png";
-import { AuthContext } from "../context/AuthContext";
- 
+
+
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { setUser } = useContext(AuthContext);
   const [error, setError] =
-    useState(""); 
+    useState("");
   const [showPassword, setShowPassword] =
     useState(false);
- 
+
   const [form, setForm] = useState({
     username: "",
     password: "",
   });
- 
+
   const handleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
   };
- 
+
   const handleSubmit = (e) => {
     e.preventDefault();
-      if (!form.username.trim() || !form.password.trim()) {
+    if (!form.username.trim() || !form.password.trim()) {
       setError("Please fill all fields");
       return;
     }
- 
+
     console.log("Login success:", form.username);
- 
-    // SAVE USER IN CONTEXT
-    setUser(form.username);
- 
-    // navigate to next page
+
+      // navigate to next page
     navigate("/startPlay");
   };
- 
+
   return (
     <div className="container min-vh-100 d-flex justify-content-center align-items-center px-3">
       <div
@@ -62,12 +60,12 @@ const LoginPage = () => {
             src={Logo}
             alt="Squid Game logo"
             className="img-fluid mb-3"
-            style={{ maxWidth: "250px" }} 
+            style={{ maxWidth: "250px" }}
           />
           <h2 className="squid-title">Squid Game</h2>
           <p>Welcome back, player</p>
         </div>
- 
+
         {/* Quote */}
         <div className="quote-box text-center mb-4 px-3">
           <p className="fst-italic">
@@ -76,7 +74,7 @@ const LoginPage = () => {
           </p>
           {error && <p className="text-danger text-center">{error}</p>}
         </div>
- 
+
         {/* Form */}
         <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
           <div>
@@ -90,10 +88,10 @@ const LoginPage = () => {
               onChange={handleChange}
             />
           </div>
- 
+
           <div>
             <label className="form-label text-center w-100">Password</label>
- 
+
             <div className="position-relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -103,7 +101,7 @@ const LoginPage = () => {
                 value={form.password}
                 onChange={handleChange}
               />
- 
+
               <span
                 onClick={() => setShowPassword(!showPassword)}
                 className="position-absolute top-50 end-0 translate-middle-y me-3"
@@ -115,12 +113,12 @@ const LoginPage = () => {
               </span>
             </div>
           </div>
- 
+
           <button type="submit" className="btn w-100 fw-bold login-btn">
             LOGIN
           </button>
         </form>
- 
+
         {/* Register */}
         <p className="text-center mt-3">
           No account?{" "}
@@ -136,7 +134,6 @@ const LoginPage = () => {
     </div>
   );
 };
- 
+
 export default LoginPage;
- 
- 
+
