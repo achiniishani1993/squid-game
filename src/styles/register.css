@@ -1,0 +1,21 @@
+/*Registration page styles*/
+.register-card{
+  box-shadow: 6px 5px 5px 0px #E40166;
+-webkit-box-shadow: 6px 5px 5px 0px #E40166;
+-moz-box-shadow: 6px 5px 5px 0px #E40166;
+}
+.register-btn {
+  background-color: #E40166;
+  color: white;
+  font-size: 24px;
+  border: none;
+  transition: 0.3s ease;
+  margin-top: 20px;
+}
+ 
+/* hover effect */
+.register-btn:hover {
+  background-color: #c80055;
+  color: white;
+}
+ 
