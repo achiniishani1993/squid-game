@@ -1,0 +1,61 @@
+.game-page {
+  min-height: 100vh;
+  padding: 2rem;
+  text-align: center;
+  background: #111;
+  color: white;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+
+.pink {
+  color: hotpink;
+}
+
+.doll-container {
+  margin-bottom: 2rem;
+}
+
+.doll-img {
+  width: 180px;
+}
+
+.track {
+  position: relative;
+  height: 140px;
+  background: #222;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 2rem auto;
+  max-width: 1000px;
+}
+
+.player {
+  position: absolute;
+  bottom: 10px;
+  transition: left 0.1s linear;
+}
+
+.player img {
+  width: 80px;
+}
+
+.goal {
+  position: absolute;
+  right: 20px;
+  top: 40px;
+  font-size: 3rem;
+}
+
+.controls {
+  margin-top: 2rem;
+}
+
+.move-btn {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+}

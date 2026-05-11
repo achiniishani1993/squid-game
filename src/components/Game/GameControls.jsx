@@ -1,13 +1,20 @@
-//keep — big UI section, cleaner to separate
-// doll
-//player move
-//onmove    → to call when button clicked
-//eliminated → display eliminated page
-// won - display won page
-//addional readings --> react context- https://legacy.reactjs.org/docs/context.html
+import Button from "react-bootstrap/Button";
 
-const GameControls = () => {
-  return <div>GameControls</div>;
+const GameControls = ({ startMoving, stopMoving }) => {
+  return (
+    <div className="controls">
+
+      <Button
+        variant="danger"
+        className="move-btn"
+        onMouseDown={startMoving}
+        onMouseUp={stopMoving}
+      >
+        MOVE FORWARD
+      </Button>
+
+    </div>
+  );
 };
 
 export default GameControls;
