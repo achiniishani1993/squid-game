@@ -14,9 +14,12 @@ import img149 from "../../assets/images/149.png";
 import "../../styles/playerSelection.css";
 import { useNavigate } from "react-router-dom";
 
-
 const PlayerSelection = () => {
   const navigate = useNavigate();
+
+  // Get data from localStorage
+  const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
+
   const [selectedPlayer, setSelectedPlayer] = useState(null);
 
   const PLAYERS = [
@@ -29,8 +32,6 @@ const PlayerSelection = () => {
 
   const handleSelect = (player) => {
     setSelectedPlayer(player);
-    // Get data from localStorage
-    const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
 
     // save to the local storage
     localStorage.setItem(
@@ -40,68 +41,68 @@ const PlayerSelection = () => {
   };
 
   return (
-   <div className="container-fluid min-vh-100 d-flex align-items-center justify-content-center py-4">
-  <div className="card shadow-lg border-0 w-100" style={{ maxWidth: "1200px" }}>
-    
-    <div className="card-body d-flex flex-column p-4 p-md-5">
-
-     
-      <div className="text-center mb-4">
-        <img
-          src={Logo}
-          alt="Squid Game logo"
-          className="img-fluid mb-3"
-          style={{ maxWidth: "220px" }}
-        />
-
-        <p className="fs-5 mb-2">
-          "You bet on horses? It's the same here, but we bet on humans. You're our horses."
-        </p>
-
-        <h2 className="fw-bold">Select your player</h2>
-
-        <p className="mb-0">
-          Welcome,   {/* TODO- need to add username from the localStorage */}
-          <span className="fw-semibold text-danger">username</span>
-        </p>
-      </div>
-
-   
-      <div className="row g-3 justify-content-center">
-        {PLAYERS.map((player) => (
-          <div key={player.id} className="col-6 col-sm-4 col-md-3 col-lg-2">
-            <PlayerCard
-              player={player}
-              isSelected={selectedPlayer?.id === player.id}
-              onSelect={handleSelect}
+    <div className="container-fluid min-vh-100 d-flex align-items-center justify-content-center py-4">
+      <div
+        className="card shadow-lg border-0 w-100"
+        style={{ maxWidth: "1200px" }}
+      >
+        <div className="card-body d-flex flex-column p-4 p-md-5">
+          <div className="text-center mb-4">
+            <img
+              src={Logo}
+              alt="Squid Game logo"
+              className="img-fluid mb-3"
+              style={{ maxWidth: "220px" }}
             />
+
+            <p className="fs-5 mb-2">
+              "You bet on horses? It's the same here, but we bet on humans.
+              You're our horses."
+            </p>
+
+            <h2 className="fw-bold">Select your player</h2>
+
+            <p className="mb-0">
+              Welcome,
+              <span className="fw-semibold text-danger">
+                {currentUser.username}
+              </span>
+            </p>
           </div>
-        ))}
+
+          <div className="row g-3 justify-content-center">
+            {PLAYERS.map((player) => (
+              <div key={player.id} className="col-6 col-sm-4 col-md-3 col-lg-2">
+                <PlayerCard
+                  player={player}
+                  isSelected={selectedPlayer?.id === player.id}
+                  onSelect={handleSelect}
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="d-flex flex-column align-items-center gap-3 mt-4">
+            <Button
+              variant="dark"
+              disabled={!selectedPlayer}
+              className="px-4 py-2 fw-bold fs-4 playnow-btn"
+              onClick={() => navigate("/game")}
+            >
+              PLAY NOW
+            </Button>
+
+            <Button
+              variant="outline-secondary"
+              className="px-4 py-2 fw-semibold leaderboard-btn"
+              onClick={() => navigate("/leaderboard")}
+            >
+              🏆 LEADERBOARD
+            </Button>
+          </div>
+        </div>
       </div>
-
-
-      <div className="d-flex flex-column align-items-center gap-3 mt-4">
-        <Button
-          variant="dark"
-          disabled={!selectedPlayer}
-          className="px-4 py-2 fw-bold fs-4 playnow-btn"
-           onClick={() => navigate("/game")}
-        >
-          PLAY NOW
-        </Button>
-
-        <Button
-          variant="outline-secondary"
-          className="px-4 py-2 fw-semibold leaderboard-btn"
-           onClick={() => navigate("/leaderboard")}
-        >
-          🏆 LEADERBOARD
-        </Button>
-      </div>
-
     </div>
-  </div>
-</div>
   );
 };
 

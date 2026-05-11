@@ -1,14 +1,13 @@
 //form UI + validation + page layout ALL HERE (Auth API also)
-// Navigation 
+// Navigation
 // - Create Account ---> success --> PlayerSelection
 // - login link ---> back to login page
 
-
-import React, { useState,useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/register.css";
 import Logo from "../assets/images/logo-Pink.png";
-import winAudio from "../assets/audios/audio-start.mp3";//imported audio
+import winAudio from "../assets/audios/audio-start.mp3"; //imported audio
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -91,7 +90,7 @@ const RegisterPage = () => {
     // Validation
     if (
       !form.username.trim() ||
-        !form.email.trim() ||
+      !form.email.trim() ||
       !form.password.trim() ||
       !form.confirmPassword.trim()
     ) {
@@ -113,10 +112,14 @@ const RegisterPage = () => {
       return;
     }
 
-    // Save locally
-    localStorage.setItem("username", form.username);
-    localStorage.setItem("password", form.password);
-    localStorage.setItem("email", form.email);
+    // Save locally and create user object
+    const userData = {
+      username: form.username,
+      password: form.password,
+    };
+
+    // Save user in localStorage
+    localStorage.setItem("user", JSON.stringify(userData));
 
     setMessage("Account created successfully");
 
@@ -151,14 +154,10 @@ const RegisterPage = () => {
         >
           <i
             className={
-              isPlaying
-                ? "bi bi-volume-up-fill"
-                : "bi bi-volume-mute-fill"
+              isPlaying ? "bi bi-volume-up-fill" : "bi bi-volume-mute-fill"
             }
-          >
-
-          </i>
-          </div>
+          ></i>
+        </div>
         {/* Logo  */}
         <div className="text-center mb-4">
           <img
@@ -175,29 +174,16 @@ const RegisterPage = () => {
 
         {/* Message Area */}
         <div className="text-center mb-3">
-          {error && (
-            <p className="text-danger">
-              {error}
-            </p>
-          )}
+          {error && <p className="text-danger">{error}</p>}
 
-          {message && (
-            <p className="text-success">
-              {message}
-            </p>
-          )}
+          {message && <p className="text-success">{message}</p>}
         </div>
 
         {/* Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="d-flex flex-column gap-3"
-        >
+        <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
           {/* Username */}
           <div>
-            <label className="form-label text-center w-100">
-              Username
-            </label>
+            <label className="form-label text-center w-100">Username</label>
 
             <input
               type="text"
@@ -210,9 +196,7 @@ const RegisterPage = () => {
           </div>
           {/* Email */}
           <div>
-            <label className="form-label text-center w-100">
-              Email
-            </label>
+            <label className="form-label text-center w-100">Email</label>
 
             <input
               type="email"
@@ -226,9 +210,7 @@ const RegisterPage = () => {
 
           {/* Password */}
           <div>
-            <label className="form-label text-center w-100">
-              Password
-            </label>
+            <label className="form-label text-center w-100">Password</label>
 
             <div className="position-relative">
               <input
@@ -249,11 +231,7 @@ const RegisterPage = () => {
                 }}
               >
                 <i
-                  className={
-                    showPassword
-                      ? "bi bi-eye-slash"
-                      : "bi bi-eye"
-                  }
+                  className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}
                 ></i>
               </span>
             </div>
@@ -276,10 +254,7 @@ const RegisterPage = () => {
           </div>
 
           {/* Register Button */}
-          <button
-            type="submit"
-            className="btn w-100 fw-bold register-btn"
-          >
+          <button type="submit" className="btn w-100 fw-bold register-btn">
             CREATE ACCOUNT
           </button>
         </form>

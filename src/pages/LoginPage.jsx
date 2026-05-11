@@ -78,38 +78,46 @@ const LoginPage = () => {
   };
 
   // Handle Login
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ // Handle Login
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    if (
-      !form.username.trim() ||
-      !form.password.trim()
-    ) {
-      setError("Please fill all fields");
-      return;
-    }
-    //saves username and password in localstorage
-    const savedUsername = localStorage.getItem("username");
-    const savedPassword = localStorage.getItem("password");
+  if (!form.username.trim() || !form.password.trim()) {
+    setError("Please fill all fields");
+    return;
+  }
 
-    //validation for username and password
-    if (
-      form.username === savedUsername &&
-      form.password === savedPassword
-    ) {
-      setMessage("Login successful");
+  // Get stored user from localStorage
+  const savedUser = JSON.parse(localStorage.getItem("user"));
 
-      localStorage.setItem("loggedInUser", form.username);
+  // Check if user exists
+  if (!savedUser) {
+    setError("No account found. Please register first.");
+    return;
+  }
 
-      stopAudio();
+  // Validate credentials
+  if (
+    form.username === savedUser.username &&
+    form.password === savedUser.password
+  ) {
+    setMessage("Login successful");
 
-      setTimeout(() => {
-        navigate("/startPlay");
-      }, 1000);
-    } else {
-      setError("Invalid username or password");
-    }
-  };
+    // Store session user (logged-in state)
+    localStorage.setItem(
+      "currentUser",
+      JSON.stringify(savedUser)
+    );
+
+    stopAudio();
+
+    setTimeout(() => {
+      navigate("/startPlay"); 
+    }, 1000);
+  } else {
+    setError("Invalid username or password");
+  }
+};
 
   return (
     <div className="container min-vh-100 d-flex justify-content-center align-items-center px-3">
