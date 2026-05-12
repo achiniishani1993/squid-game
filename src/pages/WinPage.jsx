@@ -80,6 +80,13 @@ const WinPage = () => {
         >
           LEADERBOARD
         </Button>
+          <Button
+          variant="light"
+          className="big-btn fw-bold logout-btn"
+         onClick={()=> handleNavigate("/")}
+        >
+          LOGOUT
+        </Button>
       </div>
     </div>
   );
