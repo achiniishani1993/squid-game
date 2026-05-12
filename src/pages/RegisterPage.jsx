@@ -123,10 +123,7 @@ const RegisterPage = () => {
 
     setMessage("Account created successfully");
 
-    // Navigate to login page
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
+
   };
 
   return (
@@ -144,8 +141,8 @@ const RegisterPage = () => {
           onClick={toggleAudio}
           style={{
             position: "absolute",
-            left: "-60px",
-            bottom: "-15px",
+            top: "15px",
+            right: "15px",
             cursor: "pointer",
             fontSize: "40px",
             color: "#E40166",
@@ -242,17 +239,29 @@ const RegisterPage = () => {
             <label className="form-label text-center w-100">
               Confirm Password
             </label>
-
-            <input
-              type={showPassword ? "text" : "password"}
-              name="confirmPassword"
-              className="form-control custom-input"
-              placeholder="Confirm password"
-              value={form.confirmPassword}
-              onChange={handleChange}
-            />
+            <div className="position-relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="confirmPassword"
+                className="form-control custom-input"
+                placeholder="Confirm password"
+                value={form.confirmPassword}
+                onChange={handleChange}
+              />
+              <span
+                onClick={() => setShowPassword(!showPassword)}
+                className="position-absolute top-50 end-0 translate-middle-y me-3"
+                style={{
+                  cursor: "pointer",
+                  color: "#E40166",
+                }}
+              >
+                <i
+                  className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}
+                ></i>
+              </span>
+            </div>
           </div>
-
           {/* Register Button */}
           <button type="submit" className="btn w-100 fw-bold register-btn">
             CREATE ACCOUNT
