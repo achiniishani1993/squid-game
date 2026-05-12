@@ -48,8 +48,7 @@
   margin: 50px 0;
 }
 
-.back-btn,
-.play-btn {
+.back-btn {
   padding: 12px 32px;
   font-size: clamp(1rem, 2vw, 2rem);
   border-radius: 12px;
@@ -65,18 +64,8 @@
 }
 
 
-.play-btn {
-  background-color: #E40166;
-  border: 1px solid white;
-  color: white;
-}
-
 .back-btn:hover {
   background-color: #333;
   color: white;
 }
 
-.play-btn:hover {
-  background-color: #ff0a75;
-  color: white;
-}

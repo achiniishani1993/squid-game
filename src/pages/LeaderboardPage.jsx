@@ -138,20 +138,14 @@ const LeaderboardPage = () => {
             ))}
           </div>
         </div>
-        <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 px-2 px-md-5 button-container">
+        <div className="d-flex flex-sm-row justify-content-center align-items-center gap-3 px-2 px-md-5 button-container">
           <button
-            className="btn back-btn fw-bold w-100 w-sm-auto"
+            className="btn back-btn fw-bold w-sm-auto"
             onClick={() => navigate("/startPlay")}
           >
             BACK
           </button>
 
-          <button
-            className="btn play-btn fw-bold w-100 w-sm-auto"
-            onClick={() => navigate("/game")}
-          >
-            PLAY
-          </button>
         </div>
       </div>
     </div>
