@@ -24,7 +24,7 @@ const EliminatedPage = () => {
         <Button
           variant="light"
           className="big-btn fw-bold"
-          onClick={() => navigate("/game")}
+          onClick={() => navigate("/startPlay")}
         >
           TRY AGAIN
         </Button>

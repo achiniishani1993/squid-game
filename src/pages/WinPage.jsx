@@ -9,6 +9,9 @@ const WinPage = () => {
   const navigate = useNavigate();
   const audioRef = useRef(null);
 
+  const currentUser =
+  JSON.parse(localStorage.getItem("currentUser")) || {};
+
   /*  Add and play audio - Audio Start */
   useEffect(() => {
     audioRef.current = new Audio(winAudio);
@@ -66,7 +69,7 @@ const WinPage = () => {
         <Button
           variant="light"
           className="big-btn fw-bold play-again-btn"
-          onClick={() => handleNavigate("/game")}
+          onClick={() => handleNavigate("/startPlay")}
         >
           PLAY AGAIN
         </Button>
