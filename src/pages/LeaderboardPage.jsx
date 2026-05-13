@@ -145,7 +145,6 @@ const LeaderboardPage = () => {
           >
             BACK
           </button>
-
         </div>
       </div>
     </div>
