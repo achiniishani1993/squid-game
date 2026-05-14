@@ -112,18 +112,31 @@ const RegisterPage = () => {
       return;
     }
 
-    // Save locally and create user object
+    // create userdata object
     const userData = {
       username: form.username,
       password: form.password,
     };
-
+    //make array to save all users
+    let userArray = JSON.parse(localStorage.getItem("users")) || [];
+    if (userArray.some((obj) => obj.username === form.username)) {
+      setError("Username already exists");
+    } else {
+    //push userobj to userArray
+      userArray.push(userData);
+    }
     // Save user in localStorage
-    localStorage.setItem("user", JSON.stringify(userData));
+    localStorage.setItem("users", JSON.stringify(userArray));
 
     setMessage("Account created successfully");
 
-
+    //clear form
+    setForm({
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
   };
 
   return (
