@@ -86,30 +86,35 @@ const LoginPage = () => {
       setError("Please fill all fields");
       return;
     }
- 
-    const savedUser = JSON.parse(localStorage.getItem("user"));
- 
-    if (!savedUser) {
-      setError("No account found. Please register first.");
+    //get registered users in array 
+    const savedUser = JSON.parse(localStorage.getItem("users")); 
+    //console.log(savedUser);
+    //check user exist in localStorage
+
+    if (!savedUser.some(obj => obj.username === form.username)) {
+      //console.log(form.username);
+      setError("No registered username found");
       return;
-    }
- 
-    if (
-      form.username === savedUser.username &&
-      form.password === savedUser.password
-    ) {
+    } else {
+       // find user from the Array
+       let userFind = savedUser.find(obj => obj.username === form.username);
+       //check password matched with users array
+       if(userFind.password === form.password){
+      
       setMessage("Login successful");
  
-      localStorage.setItem("currentUser", JSON.stringify(savedUser));
+      localStorage.setItem("currentUser", JSON.stringify(userFind));
  
       stopAudio();
  
       setTimeout(() => {
         navigate("/startPlay");
       }, 1000);
-    } else {
-      setError("Invalid username or password");
+       }else {
+         setError("No registered password found");
+      }
     }
+ 
   };
  
   return (
