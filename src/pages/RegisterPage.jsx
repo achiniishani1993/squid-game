@@ -193,43 +193,49 @@ const RegisterPage = () => {
         <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
           {/* Username */}
           <div>
-            <label className="form-label text-center w-100">Username</label>
+            <label htmlFor="username" className="form-label text-center w-100">Username</label>
 
             <input
               type="text"
               name="username"
+              id="username"
               className="form-control custom-input"
               placeholder="Enter username"
               value={form.username}
               onChange={handleChange}
+              autoComplete="username"
             />
           </div>
           {/* Email */}
           <div>
-            <label className="form-label text-center w-100">Email</label>
+            <label htmlFor="email" className="form-label text-center w-100">Email</label>
 
             <input
               type="email"
               name="email"
+              id="email"
               className="form-control custom-input"
               placeholder="Enter email"
               value={form.email}
               onChange={handleChange}
+              autoComplete="email"
             />
           </div>
 
           {/* Password */}
           <div>
-            <label className="form-label text-center w-100">Password</label>
+            <label htmlFor="password" className="form-label text-center w-100">Password</label>
 
             <div className="position-relative">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
+                id="password"
                 className="form-control custom-input pe-5"
                 placeholder="Enter password"
                 value={form.password}
                 onChange={handleChange}
+                autoComplete="new-password"
               />
 
               <span
@@ -249,17 +255,19 @@ const RegisterPage = () => {
 
           {/* Confirm Password */}
           <div>
-            <label className="form-label text-center w-100">
+            <label htmlFor="confirmPassword" className="form-label text-center w-100">
               Confirm Password
             </label>
             <div className="position-relative">
               <input
                 type={showPassword ? "text" : "password"}
                 name="confirmPassword"
+                id="confirmPassword"
                 className="form-control custom-input"
                 placeholder="Confirm password"
                 value={form.confirmPassword}
                 onChange={handleChange}
+                autoComplete="new-password"
               />
               <span
                 onClick={() => setShowPassword(!showPassword)}
