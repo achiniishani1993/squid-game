@@ -36,7 +36,7 @@ const PlayerSelection = () => {
     // save to the local storage
     localStorage.setItem(
       "currentUser",
-      JSON.stringify({ ...currentUser, character: player }),
+      JSON.stringify({ ...currentUser, character: player, hasPlayed: false, isWinner: false }),
     );
   };
 

@@ -9,6 +9,9 @@ const WinPage = () => {
   const navigate = useNavigate();
   const audioRef = useRef(null);
 
+  const currentUser =
+  JSON.parse(localStorage.getItem("currentUser")) || {};
+
   /*  Add and play audio - Audio Start */
   useEffect(() => {
     audioRef.current = new Audio(winAudio);
@@ -37,6 +40,16 @@ const WinPage = () => {
     navigate(path);
   };
   /*   - Audio End */
+ 
+  // before navigating leaderboard update localStorage
+  const handleLeaderBoard = () => {
+    const savedUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    localStorage.setItem("currentUser", JSON.stringify({...savedUser,   hasPlayed: true, isWinner: true,}));
+
+    navigate("/leaderboard")
+  };
+
 
   return (
     <div className="win d-flex flex-column justify-content-center align-items-center text-center">
@@ -48,7 +61,7 @@ const WinPage = () => {
           style={{ maxWidth: "250px" }}
         />
         <h1 className="fw-bold display-1 display-md-1 display-sm-2">WINNER!</h1>
-        <p className="fs-1 fw-bold ">Score: </p>
+        <p className="fs-1 fw-bold "> Score: {currentUser?.score ?? 0} </p>
         {/* TODO - need to read score from localStorage */}
       </div>
 
@@ -56,16 +69,23 @@ const WinPage = () => {
         <Button
           variant="light"
           className="big-btn fw-bold play-again-btn"
-          onClick={() => handleNavigate("/game")}
+          onClick={() => handleNavigate("/startPlay")}
         >
           PLAY AGAIN
         </Button>
         <Button
           variant="dark"
           className="big-btn fw-bold leaderboard-btn"
-          onClick={() => handleNavigate("/leaderboard")}
+         onClick={handleLeaderBoard}
         >
           LEADERBOARD
+        </Button>
+          <Button
+          variant="light"
+          className="big-btn fw-bold logout-btn"
+         onClick={()=> handleNavigate("/")}
+        >
+          LOGOUT
         </Button>
       </div>
     </div>
