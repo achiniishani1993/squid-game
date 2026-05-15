@@ -1,0 +1,114 @@
+.game-page {
+  min-height: 100vh;
+  padding: 1rem;
+  text-align: center;
+}
+
+.doll-container {
+  height: 180px;            /* fixed space to stop overflow */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 50px 0;
+}
+
+.doll-img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.track-wrapper {
+  width: 100%;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+}
+
+.track {
+  position: relative;
+  width: 90%;
+  height: 20px;
+  background: #d9d9d9;
+  border-radius: 20px;
+}
+
+/* Player */
+.player {
+  position: absolute;
+  bottom: 10px; /* Now player sits above bar not inside the track */
+  transform: translateX(-50%);
+  transition: left 0.3s linear;
+  z-index: 2;
+}
+
+.player img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+}
+
+/* Money bag css */
+.goal {
+  position: absolute;
+  right: -35px;
+  bottom: 10px;
+}
+
+.goal img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+}
+
+.game-info{
+    font-size: clamp(1rem, 2.5vw, 2rem);
+
+}
+
+
+/*  responsive adjusted  */
+
+@media (max-width: 768px) {
+  .doll-container {
+    height: 130px;
+    margin-top: 50px;
+  }
+
+  .track {
+    height: 14px;
+  }
+   .track-wrapper {
+    margin: 50px 0;
+  }
+
+  .player img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .goal img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .doll-container {
+    height: 100px;
+  }
+  .track-wrapper {
+    margin: 50px 0;
+  }
+  .player img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .goal img {
+    width: 78px;
+    height: 78px;
+  }
+}
