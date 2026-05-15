@@ -1,4 +1,4 @@
-import { Routes, Route , Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import StartPlayPage from "../pages/StartPlayPage";
@@ -18,8 +18,6 @@ const AppRoutes = () => {
         <Route path="/leaderboard" element={<LeaderBoardPage />} />
         <Route path="/eliminate" element={<EliminatedPage />} />
         <Route path="/win" element={<WinPage />} />
-
-      
 
         {/* ── 404 — unknown routes go back to login ── */}
         <Route path="*" element={<Navigate to="/login" replace />} />

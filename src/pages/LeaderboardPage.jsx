@@ -52,7 +52,10 @@ const LeaderboardPage = () => {
 
       // Get real user data from localStorage
 
-      const savedUser = JSON.parse(localStorage.getItem("currentUser"));
+      const savedUser = JSON.parse(localStorage.getItem("currentUser")) || {};
+      const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+      // take last score
+      const lastScore = leaderboard[leaderboard.length - 1]?.score || 0;
 
       let realUser = null;
 
@@ -61,9 +64,7 @@ const LeaderboardPage = () => {
           username: savedUser.username,
           characterId: savedUser.character.id,
           characterName: savedUser.character.name,
-          score:
-            savedUser.character.score ||
-            950 /*  TODO- this score need to get from localStorage once Dante finish game page right now for testing assigned fake score 150 */,
+          score: lastScore,
           isRealUser: true,
         };
       }
