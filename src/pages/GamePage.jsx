@@ -8,18 +8,21 @@ import { useNavigate } from "react-router-dom";
 
 import GameControls from "../components/Game/GameControls";
 
-import dollFront from "../assets/images/456.png";
-import dollBack from "../assets/images/388.png";
-
-import redLightSound from "../assets/audio/redlight.mp3";
-
-import "../styles/gamePage.css";
+// (***Fixed Imported*** - Import relevant images and audio correctly)
+import dollFront from "../assets/images/doll-front.png";
+import dollBack from "../assets/images/doll-back.png";
+import player from "../assets/images/player.png";
+import price from "../assets/images/wincash.png";
+import redLightSound from "../assets/audios/audio-game.mp3";
+import "../styles/game.css";
 
 const GamePage = () => {
   const navigate = useNavigate();
 
-  // 🔹 USER + PLAYER
-  const [currentUser, setCurrentUser] = useState(null);
+  // 🔹 USER + PLAYER - (*** Fixed code *** set currentUser to useState and removed unwanted useEffect)
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("currentUser")),
+  );
 
   // 🔹 GAME STATE
   const [position, setPosition] = useState(0);
@@ -34,15 +37,7 @@ const GamePage = () => {
   const audioRef = useRef(null);
   const gameRunningRef = useRef(true);
 
-  // 🔥 LOAD USER FROM STORAGE
-  useEffect(() => {
-    const savedUser =
-      JSON.parse(localStorage.getItem("currentUser")) || {};
-
-    setCurrentUser(savedUser);
-  }, []);
-
-  // 🔥 TIMER
+  // timer
   useEffect(() => {
     timerRef.current = setInterval(() => {
       setTime((prev) => {
@@ -58,31 +53,31 @@ const GamePage = () => {
     return () => clearInterval(timerRef.current);
   }, []);
 
-  // 🔥 AUDIO + DOLL SYNC
+  // (******Fixed Code****** doll and audio sync is reviced and set random turning for the doll)
   useEffect(() => {
     audioRef.current = new Audio(redLightSound);
 
     const startLoop = () => {
       if (!gameRunningRef.current) return;
 
-      // 🟢 GREEN LIGHT
       setDollFrontFacing(false);
+      audioRef.current.play().catch(() => {});
 
-      audioRef.current.play();
+      const greenTime = Math.random() * 3000 + 2000;
 
       setTimeout(() => {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
 
-        // 🔴 RED LIGHT
         setDollFrontFacing(true);
 
-        setTimeout(() => {
-          startLoop();
-        }, Math.random() * 2000 + 1000);
-      }, 2000);
+        const redTime = Math.random() * 2000 + 1000;
+
+        setTimeout(startLoop, redTime);
+      }, greenTime);
     };
 
+    // (*** Fixed Code **** -add missed statloop to correct the error )
     startLoop();
 
     return () => {
@@ -134,23 +129,19 @@ const GamePage = () => {
     gameRunningRef.current = false;
 
     // SAVE SCORE
-    const leaderboard =
-      JSON.parse(localStorage.getItem("leaderboard")) || [];
-
+    const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+    console.log("username" + currentUser?.username);
     leaderboard.push({
       username: currentUser?.username || "Guest",
       score,
     });
 
-    localStorage.setItem(
-      "leaderboard",
-      JSON.stringify(leaderboard)
-    );
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
 
     if (won) {
       navigate("/win");
     } else {
-      navigate("/eliminated");
+      navigate("/eliminate");
     }
   };
 
@@ -164,23 +155,40 @@ const GamePage = () => {
   };
 
   return (
+    //(**** Fixed Code ****- Revised UI according to the design and add bootstrap and css to make responsive to all devices)
     <div className="game-page">
+      {/* HEADER  add user data properly from localstorage and bootstrap*/}
+      <div className="game-header border border-white rounded p-3 d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <div className="d-flex align-items-center gap-3">
+          <img
+            src={currentUser?.character.img}
+            alt={currentUser?.character.name}
+            className="img-fluid rounded"
+            style={{ width: "70px", height: "70px", objectFit: "cover" }}
+          />
 
-      {/* HEADER */}
-      <div className="game-header">
-        <h2>
-          Player:{" "}
-          <span className="pink">
-            {currentUser?.username || "Guest"}
+          <div>
+            <h5 className="mb-1 text-white">{currentUser?.username}</h5>
+            <p className="mb-0 text-white"># {currentUser?.character.id}</p>
+          </div>
+        </div>
+
+        <h5 className="mb-0 text-white">
+          Score:
+          <span className="fs-2" style={{ color: "#E40166" }}>
+            {score}
           </span>
-        </h2>
+        </h5>
 
-        <h3>Score: {score}</h3>
-
-        <h3>Time: {time}s</h3>
+        <h5 className="mb-0 text-white">
+          Time:
+          <span className="fs-2" style={{ color: "#E40166" }}>
+            {time}s
+          </span>
+        </h5>
       </div>
 
-      {/* DOLL */}
+      {/* DOLL - (***Fixed code***** Replaced css and add bootstrap) */}
       <div className="doll-container">
         <img
           src={dollFrontFacing ? dollFront : dollBack}
@@ -189,32 +197,24 @@ const GamePage = () => {
         />
       </div>
 
-      {/* TRACK */}
-      <div className="track">
+      {/* (***Fixed code***** Placed money bag and player on the track bar) */}
+      <div className="track-wrapper">
+        <div className="track">
+          <div className="player" style={{ left: `${position}%` }}>
+            <img src={player} alt="player" />
+          </div>
 
-        {/* PLAYER */}
-        <div
-          className="player"
-          style={{ left: `${position}%` }}
-        >
-          <img
-            src={currentUser?.character?.img}
-            alt="Selected character"
-          />
-        </div>
-
-        {/* GOAL */}
-        <div className="goal">
-          💰
+          <div className="goal">
+            <img src={price} alt="goal" />
+          </div>
         </div>
       </div>
 
-      {/* CONTROLS */}
-      <GameControls
-        startMoving={startMoving}
-        stopMoving={stopMoving}
-      />
+      <GameControls startMoving={startMoving} stopMoving={stopMoving} />
 
+      <p className="game-info fw-bold text-center mt-5 px-3">
+        ONLY MOVE FORWARD ON THE DOLL BACK — FREEZE ON THE DOLL FRONT!
+      </p>
     </div>
   );
 };
