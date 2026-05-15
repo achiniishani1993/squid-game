@@ -247,7 +247,7 @@ const LoginPage = () => {
  
         {/* Register */}
         <p className="text-center mt-3">
-          No account?{" "}
+          No account?
           <span
             onClick={() => handleNavigate("/register")}
             className="text-decoration-underline"

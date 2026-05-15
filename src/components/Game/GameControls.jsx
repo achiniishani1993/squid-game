@@ -1,4 +1,3 @@
-
 //(**** Fixed ------Improved UI move forward button ***-add additional feature color change to the button and touch for mobile and tablet)
 
 import { useState } from "react";
@@ -10,7 +9,6 @@ const GameControls = ({ startMoving, stopMoving }) => {
   const handleStart = () => {
     setDown(true);
     startMoving();
-
   };
 
   const handleStop = () => {
@@ -31,7 +29,7 @@ const GameControls = ({ startMoving, stopMoving }) => {
           backgroundColor: down ? "#fa142b" : "#18E32D",
           maxWidth: "350px",
           letterSpacing: "2px",
-          touchAction: "none", 
+          touchAction: "none",
         }}
       >
         MOVE FORWARD

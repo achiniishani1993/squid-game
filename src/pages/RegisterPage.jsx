@@ -291,7 +291,7 @@ const RegisterPage = () => {
 
         {/* Login Link */}
         <p className="text-center mt-3">
-          Already have an account?{" "}
+          Already have an account?
           <span
             onClick={() => navigate("/")}
             className="text-decoration-underline"

@@ -5,7 +5,7 @@
 }
 
 .doll-container {
-  height: 180px;            /* fixed space to stop overflow */
+  height: 180px; /* fixed space to stop overflow */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,11 +63,9 @@
   object-fit: contain;
 }
 
-.game-info{
-    font-size: clamp(1rem, 2.5vw, 2rem);
-
+.game-info {
+  font-size: clamp(1rem, 2.5vw, 2rem);
 }
-
 
 /*  responsive adjusted  */
 
@@ -80,7 +78,7 @@
   .track {
     height: 14px;
   }
-   .track-wrapper {
+  .track-wrapper {
     margin: 50px 0;
   }
 
