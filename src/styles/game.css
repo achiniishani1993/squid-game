@@ -1,61 +1,114 @@
 .game-page {
   min-height: 100vh;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
-  background: #111;
-  color: white;
-}
-
-.game-header {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 2rem;
-}
-
-.pink {
-  color: hotpink;
 }
 
 .doll-container {
-  margin-bottom: 2rem;
+  height: 180px;            /* fixed space to stop overflow */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 50px 0;
 }
 
 .doll-img {
-  width: 180px;
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.track-wrapper {
+  width: 100%;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
 }
 
 .track {
   position: relative;
-  height: 140px;
-  background: #222;
-  border-radius: 12px;
-  overflow: hidden;
-  margin: 2rem auto;
-  max-width: 1000px;
+  width: 90%;
+  height: 20px;
+  background: #d9d9d9;
+  border-radius: 20px;
 }
 
+/* Player */
 .player {
   position: absolute;
-  bottom: 10px;
-  transition: left 0.1s linear;
+  bottom: 10px; /* Now player sits above bar not inside the track */
+  transform: translateX(-50%);
+  transition: left 0.3s linear;
+  z-index: 2;
 }
 
 .player img {
-  width: 80px;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
 }
 
+/* Money bag css */
 .goal {
   position: absolute;
-  right: 20px;
-  top: 40px;
-  font-size: 3rem;
+  right: -35px;
+  bottom: 10px;
 }
 
-.controls {
-  margin-top: 2rem;
+.goal img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
 }
 
-.move-btn {
-  font-size: 1.2rem;
-  padding: 1rem 2rem;
+.game-info{
+    font-size: clamp(1rem, 2.5vw, 2rem);
+
+}
+
+
+/*  responsive adjusted  */
+
+@media (max-width: 768px) {
+  .doll-container {
+    height: 130px;
+    margin-top: 50px;
+  }
+
+  .track {
+    height: 14px;
+  }
+   .track-wrapper {
+    margin: 50px 0;
+  }
+
+  .player img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .goal img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .doll-container {
+    height: 100px;
+  }
+  .track-wrapper {
+    margin: 50px 0;
+  }
+  .player img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .goal img {
+    width: 78px;
+    height: 78px;
+  }
 }
