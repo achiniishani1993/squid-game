@@ -87,6 +87,7 @@ const WinPage = () => {
           variant="light"
           className="big-btn fw-bold logout-btn"
           onClick={() => {
+            //removed currentUser when logout
             localStorage.removeItem("currentUser");
             handleNavigate("/");
           }}

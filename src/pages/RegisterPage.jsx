@@ -122,7 +122,7 @@ const RegisterPage = () => {
     if (userArray.some((obj) => obj.username === form.username)) {
       setError("Username already exists");
     } else {
-    //push userobj to userArray
+      //push userobj to userArray
       userArray.push(userData);
     }
     // Save user in localStorage
@@ -193,7 +193,9 @@ const RegisterPage = () => {
         <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
           {/* Username */}
           <div>
-            <label htmlFor="username" className="form-label text-center w-100">Username</label>
+            <label htmlFor="username" className="form-label text-center w-100">
+              Username
+            </label>
 
             <input
               type="text"
@@ -208,7 +210,9 @@ const RegisterPage = () => {
           </div>
           {/* Email */}
           <div>
-            <label htmlFor="email" className="form-label text-center w-100">Email</label>
+            <label htmlFor="email" className="form-label text-center w-100">
+              Email
+            </label>
 
             <input
               type="email"
@@ -224,7 +228,9 @@ const RegisterPage = () => {
 
           {/* Password */}
           <div>
-            <label htmlFor="password" className="form-label text-center w-100">Password</label>
+            <label htmlFor="password" className="form-label text-center w-100">
+              Password
+            </label>
 
             <div className="position-relative">
               <input
@@ -255,7 +261,10 @@ const RegisterPage = () => {
 
           {/* Confirm Password */}
           <div>
-            <label htmlFor="confirmPassword" className="form-label text-center w-100">
+            <label
+              htmlFor="confirmPassword"
+              className="form-label text-center w-100"
+            >
               Confirm Password
             </label>
             <div className="position-relative">
