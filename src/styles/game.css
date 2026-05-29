@@ -83,6 +83,17 @@
   background-color: #fa142b !important;
 }
 
+
+.text-pink {
+  color: #E40166 !important;
+}
+
+.user-character-img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+}
+
 /*  responsive adjusted  */
 
 @media (max-width: 768px) {
