@@ -12,25 +12,12 @@ const PlayerCard = ({ player, isSelected, onSelect }) => {
     <div className="d-flex justify-content-center">
       <Card
         onClick={() => onSelect(player)}
-        className="text-center shadow-sm h-100"
-        style={{
-          width: "160px",
-          height: "220px",
-          cursor: "pointer",
-          border: isSelected ? "3px solid hotpink" : "1px solid #E40166",
-        }}
+        className={`player-card ${
+          isSelected ? "selected" : ""
+        } text-center shadow-sm h-100`}
       >
         <div className="d-flex justify-content-center mt-3 ">
-          <Card.Img
-            src={player.img}
-            alt={player.name}
-            style={{
-              width: "80px",
-              height: "80px",
-              objectFit: "cover",
-              borderRadius: "50%",
-            }}
-          />
+          <Card.Img src={player.img} alt={player.name} className="player-img" />
         </div>
 
         <Card.Body className="d-flex flex-column justify-content-center align-items-center p-2">
