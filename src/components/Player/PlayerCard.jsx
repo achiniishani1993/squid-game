@@ -10,7 +10,7 @@ const PlayerCard = ({ player, isSelected, onSelect }) => {
 
   return (
     <div className="d-flex justify-content-center">
-        <Card
+      <Card
         onClick={() => onSelect(player)}
         className="text-center shadow-sm h-100"
         style={{

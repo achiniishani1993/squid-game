@@ -1,51 +1,60 @@
-.login-card{
-  box-shadow: 6px 5px 5px 0px #E40166;
--webkit-box-shadow: 6px 5px 5px 0px #E40166;
--moz-box-shadow: 6px 5px 5px 0px #E40166;
+.login-card {
+  box-shadow: 6px 5px 5px 0px #e40166;
+  -webkit-box-shadow: 6px 5px 5px 0px #e40166;
+  -moz-box-shadow: 6px 5px 5px 0px #e40166;
+
+  max-width: 500px;
+  width: 100%;
+  border: 2px solid #e40166;
 }
 .custom-input {
-  background-color: #1E1E1E;
+  background-color: #1e1e1e;
   color: white;
   border: 1px solid #333;
 }
- 
+
 /* placeholder color */
 .custom-input::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
- 
+
 .quote-box {
   background-color: #171717;
   color: white;
   padding: 15px;
   border-radius: 10px;
 }
- 
+
 .login-btn {
-  background-color: #E40166;
+  background-color: #e40166;
   color: white;
   font-size: 24px;
   border: none;
   transition: 0.3s ease;
   margin-top: 20px;
 }
- 
+
 /* hover effect */
 .login-btn:hover {
   background-color: #c80055;
   color: white;
 }
- 
+
 .squid-title {
-font-family: "Jaro", sans-serif;
- 
+  font-family: "Jaro", sans-serif;
+
   font-size: clamp(40px, 8vw, 80px);
   text-align: center;
- 
- 
+
   color: white;
- 
-  
-  -webkit-text-stroke: 2px #E40166;
+
+  -webkit-text-stroke: 2px #e40166;
 }
- 
+
+.text-pink{
+  color: #e40166;
+}
+
+.password-toggle, .register-link {
+  cursor: pointer;
+}

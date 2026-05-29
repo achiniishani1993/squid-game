@@ -56,13 +56,11 @@
   letter-spacing: 10px;
 }
 
-
 .back-btn {
   background-color: #1e1e1e;
   border: 1px solid white;
   color: white;
 }
-
 
 .back-btn:hover {
   background-color: #333;
