@@ -3,30 +3,30 @@ import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import Logo from "../assets/images/logo-Pink.png";
 import winAudio from "../assets/audios/audio-start.mp3";
-
+ 
 const LoginPage = () => {
   const navigate = useNavigate();
-
+ 
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
+ 
   // Audio state
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
-
+ 
   // Form state
   const [form, setForm] = useState({
     username: "",
     password: "",
   });
-
+ 
   // Load audio
   useEffect(() => {
     audioRef.current = new Audio(winAudio);
     audioRef.current.loop = true;
     audioRef.current.volume = 0.5;
-
+ 
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -34,7 +34,7 @@ const LoginPage = () => {
       }
     };
   }, []);
-
+ 
   // Play audio
   const playAudio = () => {
     if (audioRef.current) {
@@ -42,7 +42,7 @@ const LoginPage = () => {
       setIsPlaying(true);
     }
   };
-
+ 
   // Stop audio
   const stopAudio = () => {
     if (audioRef.current) {
@@ -51,7 +51,7 @@ const LoginPage = () => {
       setIsPlaying(false);
     }
   };
-
+ 
   // Toggle audio
   const toggleAudio = () => {
     if (isPlaying) {
@@ -60,28 +60,28 @@ const LoginPage = () => {
       playAudio();
     }
   };
-
+ 
   // Navigation + Stop Audio
   const handleNavigate = (path) => {
     stopAudio();
     navigate(path);
   };
-
+ 
   // Handle input changes
   const handleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
-
+ 
     setError("");
     setMessage("");
   };
-
+ 
   // Handle Login
   const handleSubmit = (e) => {
     e.preventDefault();
-
+ 
     if (!form.username.trim() || !form.password.trim()) {
       setError("Please fill all fields");
       return;
@@ -90,10 +90,10 @@ const LoginPage = () => {
     const savedUser = JSON.parse(localStorage.getItem("users"));
     //console.log(savedUser);
     //check user exist in localStorage
-
+ 
     if (!savedUser.some((obj) => obj.username === form.username)) {
       //console.log(form.username);
-      setError("No registered username found");
+      setError("Username does not exist. Please register first....");
       return;
     } else {
       // find user from the Array
@@ -101,20 +101,20 @@ const LoginPage = () => {
       //check password matched with users array
       if (userFind.password === form.password) {
         setMessage("Login successful");
-
+ 
         localStorage.setItem("currentUser", JSON.stringify(userFind));
-
+ 
         stopAudio();
-
+ 
         setTimeout(() => {
           navigate("/startPlay");
         }, 1000);
       } else {
-        setError("No registered password found");
+        setError("Password does not exist. Please check..");
       }
     }
   };
-
+ 
   return (
     <div className="container min-vh-100 d-flex justify-content-center align-items-center px-3">
       <div
@@ -144,7 +144,7 @@ const LoginPage = () => {
             }
           ></i>
         </div>
-
+ 
         {/* Logo */}
         <div className="text-center mb-4">
           <img
@@ -153,24 +153,24 @@ const LoginPage = () => {
             className="img-fluid mb-3"
             style={{ maxWidth: "250px" }}
           />
-
+ 
           <h2 className="squid-title">Squid Game</h2>
-
+ 
           <p>Welcome back, player</p>
         </div>
-
+ 
         {/* Quote */}
         <div className="quote-box text-center mb-4 px-3">
           <p className="fst-italic">
             "The most dangerous animal in the world is a silent, smiling
             person."
           </p>
-
+ 
           {error && <p className="text-danger text-center">{error}</p>}
-
+ 
           {message && <p className="text-success text-center">{message}</p>}
         </div>
-
+ 
         {/* Form */}
         <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
           {/* Username */}
@@ -178,7 +178,7 @@ const LoginPage = () => {
             <label htmlFor="username" className="form-label text-center w-100">
               Username
             </label>
-
+ 
             <input
               type="text"
               name="username"
@@ -190,13 +190,13 @@ const LoginPage = () => {
               autoComplete="username"
             />
           </div>
-
+ 
           {/* Password */}
           <div>
             <label htmlFor="password" className="form-label text-center w-100">
               Password
             </label>
-
+ 
             <div className="position-relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -208,7 +208,7 @@ const LoginPage = () => {
                 onChange={handleChange}
                 autoComplete="current-password"
               />
-
+ 
               <span
                 onClick={() => setShowPassword(!showPassword)}
                 className="position-absolute top-50 end-0 translate-middle-y me-3"
@@ -223,13 +223,13 @@ const LoginPage = () => {
               </span>
             </div>
           </div>
-
+ 
           {/* Login Button */}
           <button type="submit" className="btn w-100 fw-bold login-btn">
             LOGIN
           </button>
         </form>
-
+ 
         {/* Register */}
         <p className="text-center mt-3">
           No account?
@@ -248,5 +248,6 @@ const LoginPage = () => {
     </div>
   );
 };
-
+ 
 export default LoginPage;
+ 
