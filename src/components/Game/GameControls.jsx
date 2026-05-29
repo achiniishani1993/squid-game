@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
+import "../../styles/game.css";
 
 const GameControls = ({ startMoving, stopMoving }) => {
   const [down, setDown] = useState(false);
@@ -22,15 +23,11 @@ const GameControls = ({ startMoving, stopMoving }) => {
         onMouseDown={handleStart}
         onMouseUp={handleStop}
         onMouseLeave={handleStop}
-        onTouchStart={handleStart} /* for mobile and tablet devicess */
+        onTouchStart={handleStart}
         onTouchEnd={handleStop}
-        className="text-white border-0 w-100 fs-1 fw-bold"
-        style={{
-          backgroundColor: down ? "#fa142b" : "#18E32D",
-          maxWidth: "350px",
-          letterSpacing: "2px",
-          touchAction: "none",
-        }}
+        className={`move-button ${
+          down ? "down" : "up"
+        } text-white border-0 w-100 fs-1 fw-bold`}
       >
         MOVE FORWARD
       </Button>

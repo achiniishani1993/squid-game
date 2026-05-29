@@ -67,6 +67,22 @@
   font-size: clamp(1rem, 2.5vw, 2rem);
 }
 
+/* GameControls- Button css (moved inline styles) */
+
+.move-button {
+  max-width: 350px;
+  letter-spacing: 2px;
+  touch-action: none;
+}
+
+.move-button.up {
+  background-color: #18E32D !important;
+}
+
+.move-button.down {
+  background-color: #fa142b !important;
+}
+
 /*  responsive adjusted  */
 
 @media (max-width: 768px) {
