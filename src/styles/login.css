@@ -51,10 +51,11 @@
   -webkit-text-stroke: 2px #e40166;
 }
 
-.text-pink{
+.text-pink {
   color: #e40166;
 }
 
-.password-toggle, .register-link {
+.password-toggle,
+.register-link {
   cursor: pointer;
 }
