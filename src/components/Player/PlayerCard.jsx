@@ -10,11 +10,15 @@ const PlayerCard = ({ player, isSelected, onSelect }) => {
 
   return (
     <div className="d-flex justify-content-center">
-      <Card
+        <Card
         onClick={() => onSelect(player)}
-        className={`player-card ${
-          isSelected ? "selected" : ""
-        } text-center shadow-sm h-100`}
+        className="text-center shadow-sm h-100"
+        style={{
+          width: "160px",
+          height: "220px",
+          cursor: "pointer",
+          border: isSelected ? "3px solid hotpink" : "1px solid #E40166",
+        }}
       >
         <div className="d-flex justify-content-center mt-3 ">
           <Card.Img src={player.img} alt={player.name} className="player-img" />
