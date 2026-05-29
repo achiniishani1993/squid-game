@@ -87,7 +87,7 @@ const LoginPage = () => {
       return;
     }
     //get registered users in array
-    const savedUser = JSON.parse(localStorage.getItem("users"));
+    const savedUser = JSON.parse(localStorage.getItem("users"))|| [];
     //console.log(savedUser);
     //check user exist in localStorage
 
