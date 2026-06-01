@@ -105,16 +105,9 @@ const LeaderboardPage = () => {
             {players.map((player) => (
               <div
                 key={player.rank}
-                className="d-flex flex-column flex-md-row justify-content-between align-items-center p-3 p-md-4 player-card"
-                style={{
-                  border: player.isRealUser
-                    ? "3px solid #00ff99"
-                    : "2px solid white",
-
-                  boxShadow: player.isRealUser
-                    ? "0 0 15px #00ff99"
-                    : "0 0 10px rgba(255,255,255,0.3)",
-                }}
+                className={`d-flex flex-column flex-md-row justify-content-between align-items-center p-3 p-md-4 player-card ${
+                  player.isRealUser ? "real-user" : ""
+                }`}
               >
                 <div className="d-flex align-items-center gap-3 gap-md-4 w-100">
                   {/* rank */}

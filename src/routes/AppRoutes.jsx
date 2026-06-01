@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import ProtectedRoutes from "../utils/ProtectedRoutes";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import StartPlayPage from "../pages/StartPlayPage";
@@ -11,15 +12,16 @@ const AppRoutes = () => {
   return (
     <div>
       <Routes>
-        <Route exact path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/startPlay" element={<StartPlayPage />} />
-        <Route path="/game" element={<GamePage />} />
-        <Route path="/leaderboard" element={<LeaderBoardPage />} />
-        <Route path="/eliminate" element={<EliminatedPage />} />
-        <Route path="/win" element={<WinPage />} />
 
-        {/* ── 404 — unknown routes go back to login ── */}
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/startPlay" element={<StartPlayPage />} />
+          <Route path="/game" element={<GamePage />} />
+          <Route path="/leaderboard" element={<LeaderBoardPage />} />
+          <Route path="/eliminate" element={<EliminatedPage />} />
+          <Route path="/win" element={<WinPage />} />
+        </Route>
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </div>

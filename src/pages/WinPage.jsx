@@ -61,8 +61,7 @@ const WinPage = () => {
         <img
           src={Logo}
           alt="Squid Game logo"
-          className="img-fluid"
-          style={{ maxWidth: "250px" }}
+          className="img-fluid w-50"
         />
         <h1 className="fw-bold display-1 display-md-1 display-sm-2">WINNER!</h1>
         <p className="fs-1 fw-bold "> Score: {lastScore} </p>

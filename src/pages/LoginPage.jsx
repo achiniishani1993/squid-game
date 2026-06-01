@@ -3,30 +3,30 @@ import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import Logo from "../assets/images/logo-Pink.png";
 import winAudio from "../assets/audios/audio-start.mp3";
- 
+
 const LoginPage = () => {
   const navigate = useNavigate();
- 
+
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
- 
+
   // Audio state
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
- 
+
   // Form state
   const [form, setForm] = useState({
     username: "",
     password: "",
   });
- 
+
   // Load audio
   useEffect(() => {
     audioRef.current = new Audio(winAudio);
     audioRef.current.loop = true;
     audioRef.current.volume = 0.5;
- 
+
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -34,7 +34,7 @@ const LoginPage = () => {
       }
     };
   }, []);
- 
+
   // Play audio
   const playAudio = () => {
     if (audioRef.current) {
@@ -42,7 +42,7 @@ const LoginPage = () => {
       setIsPlaying(true);
     }
   };
- 
+
   // Stop audio
   const stopAudio = () => {
     if (audioRef.current) {
@@ -51,7 +51,7 @@ const LoginPage = () => {
       setIsPlaying(false);
     }
   };
- 
+
   // Toggle audio
   const toggleAudio = () => {
     if (isPlaying) {
@@ -60,37 +60,37 @@ const LoginPage = () => {
       playAudio();
     }
   };
- 
+
   // Navigation + Stop Audio
   const handleNavigate = (path) => {
     stopAudio();
     navigate(path);
   };
- 
+
   // Handle input changes
   const handleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
- 
+
     setError("");
     setMessage("");
   };
- 
+
   // Handle Login
   const handleSubmit = (e) => {
     e.preventDefault();
- 
+
     if (!form.username.trim() || !form.password.trim()) {
       setError("Please fill all fields");
       return;
     }
     //get registered users in array
-    const savedUser = JSON.parse(localStorage.getItem("users"));
+    const savedUser = JSON.parse(localStorage.getItem("users"))|| [];
     //console.log(savedUser);
     //check user exist in localStorage
- 
+
     if (!savedUser.some((obj) => obj.username === form.username)) {
       //console.log(form.username);
       setError("Username does not exist. Please register first....");
@@ -101,42 +101,27 @@ const LoginPage = () => {
       //check password matched with users array
       if (userFind.password === form.password) {
         setMessage("Login successful");
- 
+
         localStorage.setItem("currentUser", JSON.stringify(userFind));
- 
+
         stopAudio();
- 
+
         setTimeout(() => {
           navigate("/startPlay");
         }, 1000);
       } else {
-        setError("Password does not exist. Please check..");
+        setError("Password not matched. Please check..");
       }
     }
   };
- 
+
   return (
     <div className="container min-vh-100 d-flex justify-content-center align-items-center px-3">
-      <div
-        className="w-100 p-4 rounded-3 login-card position-relative"
-        style={{
-          maxWidth: "500px",
-          width: "100%",
-          border: "2px solid #E40166",
-        }}
-      >
+      <div className="w-100 p-4 rounded-3 login-card position-relative">
         {/* Audio Icon Top Right */}
         <div
           onClick={toggleAudio}
-          style={{
-            position: "absolute",
-            top: "15px",
-            right: "15px",
-            cursor: "pointer",
-            fontSize: "30px",
-            color: "#E40166",
-            zIndex: 10,
-          }}
+          className="position-absolute top-0 end-0 p-3 text-pink fs-3"
         >
           <i
             className={
@@ -144,33 +129,32 @@ const LoginPage = () => {
             }
           ></i>
         </div>
- 
+
         {/* Logo */}
         <div className="text-center mb-4">
           <img
             src={Logo}
             alt="Squid Game logo"
-            className="img-fluid mb-3"
-            style={{ maxWidth: "250px" }}
+            className="img-fluid mb-3 w-50"
           />
- 
+
           <h2 className="squid-title">Squid Game</h2>
- 
+
           <p>Welcome back, player</p>
         </div>
- 
+
         {/* Quote */}
         <div className="quote-box text-center mb-4 px-3">
           <p className="fst-italic">
             "The most dangerous animal in the world is a silent, smiling
             person."
           </p>
- 
+
           {error && <p className="text-danger text-center">{error}</p>}
- 
+
           {message && <p className="text-success text-center">{message}</p>}
         </div>
- 
+
         {/* Form */}
         <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
           {/* Username */}
@@ -178,7 +162,7 @@ const LoginPage = () => {
             <label htmlFor="username" className="form-label text-center w-100">
               Username
             </label>
- 
+
             <input
               type="text"
               name="username"
@@ -190,13 +174,13 @@ const LoginPage = () => {
               autoComplete="username"
             />
           </div>
- 
+
           {/* Password */}
           <div>
             <label htmlFor="password" className="form-label text-center w-100">
               Password
             </label>
- 
+
             <div className="position-relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -208,14 +192,10 @@ const LoginPage = () => {
                 onChange={handleChange}
                 autoComplete="current-password"
               />
- 
+
               <span
                 onClick={() => setShowPassword(!showPassword)}
-                className="position-absolute top-50 end-0 translate-middle-y me-3"
-                style={{
-                  cursor: "pointer",
-                  color: "#E40166",
-                }}
+                className="password-toggle position-absolute top-50 end-0 translate-middle-y me-3 text-pink"
               >
                 <i
                   className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}
@@ -223,23 +203,19 @@ const LoginPage = () => {
               </span>
             </div>
           </div>
- 
+
           {/* Login Button */}
           <button type="submit" className="btn w-100 fw-bold login-btn">
             LOGIN
           </button>
         </form>
- 
+
         {/* Register */}
         <p className="text-center mt-3">
           No account?
           <span
             onClick={() => handleNavigate("/register")}
-            className="text-decoration-underline"
-            style={{
-              cursor: "pointer",
-              color: "#E40166",
-            }}
+            className="text-decoration-underline text-pink register-link"
           >
             Register
           </span>
@@ -248,6 +224,5 @@ const LoginPage = () => {
     </div>
   );
 };
- 
+
 export default LoginPage;
- 

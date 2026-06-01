@@ -43,16 +43,14 @@ const PlayerSelection = () => {
   return (
     <div className="container-fluid min-vh-100 d-flex align-items-center justify-content-center py-4">
       <div
-        className="card shadow-lg border-0 w-100"
-        style={{ maxWidth: "1200px" }}
+        className="card shadow-lg border-0 w-100 selection-card"
       >
         <div className="card-body d-flex flex-column p-4 p-md-5">
           <div className="text-center mb-4">
             <img
               src={Logo}
               alt="Squid Game logo"
-              className="img-fluid mb-3"
-              style={{ maxWidth: "220px" }}
+              className="img-fluid mb-3 game-logo"
             />
 
             <p className="fs-5 mb-2">

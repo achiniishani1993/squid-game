@@ -21,16 +21,7 @@ const PlayerCard = ({ player, isSelected, onSelect }) => {
         }}
       >
         <div className="d-flex justify-content-center mt-3 ">
-          <Card.Img
-            src={player.img}
-            alt={player.name}
-            style={{
-              width: "80px",
-              height: "80px",
-              objectFit: "cover",
-              borderRadius: "50%",
-            }}
-          />
+          <Card.Img src={player.img} alt={player.name} className="player-img" />
         </div>
 
         <Card.Body className="d-flex flex-column justify-content-center align-items-center p-2">

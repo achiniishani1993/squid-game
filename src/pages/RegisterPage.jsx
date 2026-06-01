@@ -14,6 +14,7 @@ const RegisterPage = () => {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   // Audio state
@@ -141,26 +142,11 @@ const RegisterPage = () => {
 
   return (
     <div className="container min-vh-100 d-flex justify-content-center align-items-center px-3">
-      <div
-        className="w-100 p-4 rounded-3 register-card position-relative"
-        style={{
-          maxWidth: "500px",
-          width: "100%",
-          border: "2px solid #E40166",
-        }}
-      >
+      <div className="w-100 p-4 rounded-3 register-card position-relative">
         {/* Audio Icon */}
         <div
           onClick={toggleAudio}
-          style={{
-            position: "absolute",
-            top: "15px",
-            right: "15px",
-            cursor: "pointer",
-            fontSize: "40px",
-            color: "#E40166",
-            zIndex: 10,
-          }}
+          className="position-absolute top-0 end-0 p-3 text-pink fs-3"
         >
           <i
             className={
@@ -173,17 +159,16 @@ const RegisterPage = () => {
           <img
             src={Logo}
             alt="Squid Game logo"
-            className="img-fluid mb-3"
-            style={{ maxWidth: "250px" }}
+            className="img-fluid mb-1 w-50"
           />
 
-          <h2 className="squid-title">Create Account</h2>
+          <h2 className="createaccount-title">Create Account</h2>
 
-          <p style={{ fontWeight: "bold" }}>Join the game</p>
+          <p className="fw-bold sub-title">Join the game</p>
         </div>
 
         {/* Message Area */}
-        <div className="text-center mb-3">
+        <div className="text-center mb-2">
           {error && <p className="text-danger">{error}</p>}
 
           {message && <p className="text-success">{message}</p>}
@@ -246,11 +231,7 @@ const RegisterPage = () => {
 
               <span
                 onClick={() => setShowPassword(!showPassword)}
-                className="position-absolute top-50 end-0 translate-middle-y me-3"
-                style={{
-                  cursor: "pointer",
-                  color: "#E40166",
-                }}
+                className="position-absolute top-50 end-0 translate-middle-y me-3 text-pink show-toggle"
               >
                 <i
                   className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}
@@ -269,7 +250,7 @@ const RegisterPage = () => {
             </label>
             <div className="position-relative">
               <input
-                type={showPassword ? "text" : "password"}
+                type={showConfirmPassword ? "text" : "password"}
                 name="confirmPassword"
                 id="confirmPassword"
                 className="form-control custom-input"
@@ -279,15 +260,13 @@ const RegisterPage = () => {
                 autoComplete="new-password"
               />
               <span
-                onClick={() => setShowPassword(!showPassword)}
-                className="position-absolute top-50 end-0 translate-middle-y me-3"
-                style={{
-                  cursor: "pointer",
-                  color: "#E40166",
-                }}
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="position-absolute top-50 end-0 translate-middle-y me-3 text-pink show-toggle"
               >
                 <i
-                  className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}
+                  className={
+                    showConfirmPassword ? "bi bi-eye-slash" : "bi bi-eye"
+                  }
                 ></i>
               </span>
             </div>
@@ -303,11 +282,7 @@ const RegisterPage = () => {
           Already have an account?
           <span
             onClick={() => navigate("/")}
-            className="text-decoration-underline"
-            style={{
-              cursor: "pointer",
-              color: "#E40166",
-            }}
+            className="text-decoration-underline text-pink login-link"
           >
             Login
           </span>

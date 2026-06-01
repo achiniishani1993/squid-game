@@ -15,6 +15,15 @@
   letter-spacing: 8px;
 }
 
+.selection-card {
+  max-width: 1200px;
+}
+
+.game-logo {
+  max-width: 220px;
+}
+
+
 /* card css - PlayerCard component  */
 
 .card-text {
@@ -27,3 +36,27 @@
   background-color: #e40166;
   width: 70px;
 }
+/* .card.selectedplayer-card {
+  background: white !important;
+  background-color: white !important;
+  --bs-card-bg: white !important;
+}
+.selectedplayer-card {
+  width: 160px;
+  height: 220px;
+  cursor: pointer;
+  border: 1px solid #E40166;
+  
+}
+.player-card.selected {
+  border: 3px solid hotpink;
+} */
+
+.player-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+

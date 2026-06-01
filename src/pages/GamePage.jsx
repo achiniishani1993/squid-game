@@ -163,8 +163,7 @@ const GamePage = () => {
           <img
             src={currentUser?.character.img}
             alt={currentUser?.character.name}
-            className="img-fluid rounded"
-            style={{ width: "70px", height: "70px", objectFit: "cover" }}
+            className="img-fluid rounded user-character-img"
           />
 
           <div>
@@ -175,16 +174,12 @@ const GamePage = () => {
 
         <h5 className="mb-0 text-white">
           Score:
-          <span className="fs-2" style={{ color: "#E40166" }}>
-            {score}
-          </span>
+          <span className="fs-2 text-pink">{score}</span>
         </h5>
 
         <h5 className="mb-0 text-white">
           Time:
-          <span className="fs-2" style={{ color: "#E40166" }}>
-            {time}s
-          </span>
+          <span className="fs-2 text-pink">{time}s</span>
         </h5>
       </div>
 

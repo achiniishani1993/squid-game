@@ -56,16 +56,24 @@
   letter-spacing: 10px;
 }
 
-
 .back-btn {
   background-color: #1e1e1e;
   border: 1px solid white;
   color: white;
 }
 
-
 .back-btn:hover {
   background-color: #333;
   color: white;
 }
 
+.player-card {
+  border: 2px solid white;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.player-card.real-user {
+  border: 3px solid #00ff99;
+  box-shadow: 0 0 15px #00ff99;
+}
